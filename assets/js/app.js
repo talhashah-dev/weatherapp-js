@@ -72,7 +72,7 @@ async function defaultSearch() {
     time.innerText = timeString;
   } catch (e) {
     e == "TypeError: Failed to fetch"
-      ? (error.innerText = "Check you internet connection!")
+      ? (error.innerText = "Check your internet connection!")
       : console.log(e);
   }
 }
@@ -81,30 +81,35 @@ async function defaultSearch() {
 const forecast = document.getElementById("forecast");
 
 async function forecastData() {
+  const forecastRes = await fetch(
+    `https://api.openweathermap.org/data/2.5/forecast?q=karachi&units=metric&appid=${API_KEY}`
+  );
+  const forecastData = await forecastRes.json();
+  console.log(forecastData.list.length);
 
-    const forecastRes = await fetch(
-        `https://api.openweathermap.org/data/2.5/forecast?q=karachi&units=metric&appid=${API_KEY}`
-      );
-      const forecastData = await forecastRes.json();
-      console.log(`${forecastData.list[0].main.temp}`);
-      forecast.innerHTML = `
+  for (let i = 0; i < forecastData.list.length; i++) {
+    forecast.innerHTML += `
       <div class="card d-flex flex-row mb-2" >
       <div class="card-body p-1">
-        <h5 class="card-title m-0">Sunday</h5>
-        <p class="card-text m-0"></p>
-        <p class="card-text m-0"></p>
+        <h5 class="card-title m-0">${new Date(forecastData.list[i].dt * 1000).toLocaleDateString('en-US', { weekday: 'long' })}</h5>
+        <p class="card-text m-0">${forecastData.list[i].main.temp_max}/${forecastData.list[i].main.temp_min}</p>
+        <p class="card-text m-0">${forecastData.list[i].weather[0].description}</p>
       </div>
       <img
-        src="https://openweathermap.org/img/wn/10d@2x.png"
+        src="https://openweathermap.org/img/wn/${forecastData.list[i].weather[0].icon}.png
         style="width: 80px"
         alt=""
       />
     </div>
-    `
-
+    `;
+  }
 }
 
 function handleKey() {
   getData();
   forecastData();
+}
+
+function forecastModal(){
+    console.log("Hii")
 }

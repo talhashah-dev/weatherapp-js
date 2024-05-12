@@ -5,8 +5,7 @@ function search(e) {
   //   .then(() => (data = result));
   // console.log(data);
 }
-<<<<<<< HEAD
-=======
+
 mainForm.addEventListener("submit", handleForm);
 
 // fetching and rendering weather data

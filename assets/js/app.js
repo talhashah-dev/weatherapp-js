@@ -16,6 +16,7 @@ async function getData() {
       `https://api.openweathermap.org/data/2.5/weather?q=${citySearchInp.value}&appid=${API_KEY}&units=metric`
     );
     const data = await response.json();
+    console.log(data);
     searchLocation.innerHTML = `${data.name}, ${data.sys.country}`;
     temp.innerText = `${data.main.temp}°`;
     description.innerText = data.weather[0].description;
@@ -100,4 +101,3 @@ function handleKey() {
   forecastData();
 }
 
->>>>>>> parent of 5ea1bb4 (modefied app.js and index.html)

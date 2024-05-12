@@ -6,6 +6,7 @@
     <title>Weather App</title>
     <link rel="stylesheet" href="./assets/styles/style.css" />
   </head>
+<<<<<<< HEAD
   <body>
     <div class="wrapper">
       <div class="current-weather">
@@ -44,6 +45,37 @@
             <img src="" alt="" />
             <p>Humidity</p>
             <p id="humidity">50%</p>
+=======
+  <body onload="defaultSearch(), forecastData()">
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title fs-5" id="exampleModalLabel">6 Day Forecast</h1>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">OpenWeatherMap's 5-day forecast is available for any location on Earth, and includes weather data with a 3-hour step.</div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Close
+            </button>
+>>>>>>> parent of 5ea1bb4 (modefied app.js and index.html)
           </div>
         </div>
       </div>
@@ -54,9 +86,34 @@
           <img src="" alt="">
           <span>25/31</span>
         </div>
+<<<<<<< HEAD
       </div>
+=======
+        <div
+          class="d-flex flex-column justify-content-around text-white bg-dark rounded w-25 p-3 data-mdb-perfect-scrollbar-init"
+        >
+          <div class="h2">
+            6 Day Forecast
+            <i
+              class="bi bi-exclamation-circle"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+              style="font-size: 20px; cursor: pointer"
+              onclick="forecastModal()"
+            ></i>
+          </div>
+>>>>>>> parent of 5ea1bb4 (modefied app.js and index.html)
 
       <script src="./assets/js/app.js"></script>
     </div>
+<<<<<<< HEAD
+=======
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script src="assets/js/app.js"></script>
+>>>>>>> parent of 5ea1bb4 (modefied app.js and index.html)
   </body>
 </html>

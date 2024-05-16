@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Weather App</title>
     <link rel="stylesheet" href="./assets/styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
   </head>
   <body>
     <div class="container">
@@ -12,14 +19,14 @@
         <h1>Weather</h1>
         <span class="action">
           <button class="dark-mode" type="button">Dark Mode</button>
-          <a href="#">github</a>
+          <a href="https://github.com/talhashah-dev/weatherapp-js" target="_blank"><i class="fa-brands fa-github"></i></a>
         </span>
       </header>
 
       <div class="search-container">
-        <button type="button" id="searchBtn">S</button>
-        <input type="search" id="searchInp" placeholder="Search for a city.." />
-        <button type="button" id="locateMe">L</button>
+        <i id="searchBtn" class="fa-solid fa-magnifying-glass"></i>
+        <input type="search" id="searchInp" placeholder="Search for a city.." autocomplete="off" />
+        <i id="locateMe" class="fa-solid fa-crosshairs"></i>
       </div>
 
       <div class="weather-container">
@@ -32,7 +39,11 @@
           <div class="basic-info">
             <p class="location">Paris</p>
             <div>
-              <img src="./assets/images/overcast.png" alt="" class="weather-icon" />
+              <img
+                src="./assets/images/overcast.png"
+                alt=""
+                class="weather-icon"
+              />
               <p class="temperature">24°C</p>
             </div>
             <p class="description">Clear Sky</p>
@@ -42,34 +53,32 @@
             <p class="feels-like">Feels Like 24°C</p>
             <div class="temp-info">
               <div class="temp-box">
-                <img src="./assets/images/arrow-up.png" alt="">
+                <img src="./assets/images/arrow-up.png" alt="" />
                 <p>25°C</p>
               </div>
               <div class="temp-box">
-                <img src="./assets/images/arrow-down.png" alt="">
+                <img src="./assets/images/arrow-down.png" alt="" />
                 <p>25°C</p>
               </div>
             </div>
 
             <div class="temp-box">
-              <img src="./assets/images/humidity.png" alt="">
+              <img src="./assets/images/humidity.png" alt="" />
               <p>Humidity</p>
               <p>52%</p>
             </div>
             <div class="temp-box">
-              <img src="./assets/images/wind.png" alt="">
+              <img src="./assets/images/wind.png" alt="" />
               <p>Wind</p>
               <p>18kmh</p>
             </div>
             <div class="temp-box">
-              <img src="./assets/images/pressure.png" alt="">
+              <img src="./assets/images/pressure.png" alt="" />
               <p>Humidity</p>
               <p>124hpa</p>
             </div>
-
           </div>
         </div>
-        
       </div>
 
       <div class="forecast"></div>

@@ -32,13 +32,20 @@ header h1 {
 
 header .action {
     display: flex;
+    align-items: center;
     gap: 10px;
 }
 
+header .action i {
+    font-size: 26px;
+}
+header .action i:hover {
+    opacity: 0.6;
+}
+
 .search-container {
-    padding: 10px 5px;
+    padding: 10px 15px;
     display: flex;
-    justify-content: space-around;
     align-items: center;
     border-radius: 25px;
     background-color: white;
@@ -52,15 +59,26 @@ header .action {
     padding: 0 10px;
     color: #444;
     height: 100%;
+    font-size: 18px;
 }
 
 .search-container button {
     appearance: none;
     outline: none;
     background-color: transparent;
+    border: none;
     width: 25px;
     height: 25px;
     border-radius: 50%;
+}
+
+.search-container i {
+    color: var(--blue);
+    font-size: 22px;
+}
+
+.search-container i:active {
+    transform: scale(0.95);
 }
 
 .search-container #searchInp {

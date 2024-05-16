@@ -1,7 +1,19 @@
 const searchInp = document.getElementById("searchInp");
 const searchBtn = document.getElementById("searchBtn");
 const locateMe = document.getElementById("locateMe");
+const darkModeToggleBtn = document.getElementById("darkModeToggleBtn");
 const API_KEY = "210eeabe1cac851c368047662c4815fd";
+
+darkModeToggleBtn.addEventListener("click", () => {
+  const body = document.body;
+  const searchContainer = document.querySelector(".search-container");
+  const weatherContainer = document.querySelector(".weather-container");
+  darkModeToggleBtn.classList.toggle("fa-moon");
+  body.classList.toggle("bg-body-dark");
+  searchContainer.classList.toggle("bg-blue-container");
+  weatherContainer.classList.toggle("bg-blue-container");
+  searchInp.classList.toggle("bg-blue-container");
+});
 
 async function getSearchWeather() {
   if (searchInp.value !== "") {

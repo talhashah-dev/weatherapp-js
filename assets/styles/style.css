@@ -1,6 +1,8 @@
 :root {
   --blue: #2f5d8a;
   --light-blue: #7b98b3;
+  --dark-bg-blue: #021026;
+  --bg-dark-container: #051a33;
 }
 
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
@@ -41,11 +43,13 @@ header .action {
   gap: 10px;
 }
 
+header .action a,
+header .action i {
+  color: var(--blue);
+}
+
 header .action i {
   font-size: 26px;
-}
-header .action i:hover {
-  opacity: 0.6;
 }
 
 .search-container {
@@ -165,4 +169,13 @@ header .action i:hover {
 .extra-info .feels-like {
   font-size: 18px;
   color: var(--blue);
+}
+
+.bg-body-dark {
+  background-image: linear-gradient(to bottom, #011433, #021026);
+}
+
+.bg-blue-container {
+  background-color: #021d3f;
+  color: #fff !important;
 }

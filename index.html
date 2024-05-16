@@ -17,33 +17,56 @@
       </header>
 
       <div class="search-container">
-        <button type="button" id="searchBtn">Search</button>
-        <input type="search" id="searchInp" />
-        <button type="button" id="locateMe">locate Me</button>
+        <button type="button" id="searchBtn">S</button>
+        <input type="search" id="searchInp" placeholder="Search for a city.." />
+        <button type="button" id="locateMe">L</button>
       </div>
 
       <div class="weather-container">
         <div class="heading">
-          <h3>Current Weather</h3>
-          <button type="button" id="change-unit">F/C</button>
+          <p>Current Weather</p>
+          <!-- <button type="button" id="change-unit">F/C</button> -->
         </div>
 
         <div class="weather-info">
           <div class="basic-info">
             <p class="location">Paris</p>
             <div>
-              <img src="" alt="" class="weather-icon" />
-              <p class="temprature">24</p>
+              <img src="./assets/images/overcast.png" alt="" class="weather-icon" />
+              <p class="temperature">24°C</p>
             </div>
             <p class="description">Clear Sky</p>
           </div>
 
           <div class="extra-info">
-            <p class="feels-like">24</p>
-            <div>24/29</div>
-            <div>Humidity</div>
-            <div>Wind</div>
-            <div>Pressure</div>
+            <p class="feels-like">Feels Like 24°C</p>
+            <div class="temp-info">
+              <div class="temp-box">
+                <img src="./assets/images/arrow-up.png" alt="">
+                <p>25°C</p>
+              </div>
+              <div class="temp-box">
+                <img src="./assets/images/arrow-down.png" alt="">
+                <p>25°C</p>
+              </div>
+            </div>
+
+            <div class="temp-box">
+              <img src="./assets/images/humidity.png" alt="">
+              <p>Humidity</p>
+              <p>52%</p>
+            </div>
+            <div class="temp-box">
+              <img src="./assets/images/wind.png" alt="">
+              <p>Wind</p>
+              <p>18kmh</p>
+            </div>
+            <div class="temp-box">
+              <img src="./assets/images/pressure.png" alt="">
+              <p>Humidity</p>
+              <p>124hpa</p>
+            </div>
+
           </div>
         </div>
         

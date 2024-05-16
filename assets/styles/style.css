@@ -1,3 +1,8 @@
+:root {
+    --blue : #2F5D8A;
+    --light-blue: #7B98B3;
+} 
+
 body {
     font-family: 'Arial', sans-serif;
     background-color: #e0f7fa;
@@ -14,7 +19,6 @@ body {
 }
 
 header {
-    background-color: white;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -23,6 +27,7 @@ header {
 
 header h1 {
     margin: 0;
+    color: var(--blue);
 }
 
 header .action {
@@ -30,22 +35,31 @@ header .action {
     gap: 10px;
 }
 
-
-
-
 .search-container {
-    background-color: yellow;
     padding: 10px 5px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 25px;
+    background-color: white;
+    height: 25px;
+}
+
+.search-container input {
+    outline: none;
+    border: none;
+    font-size: 16px;
+    padding: 0 10px;
+    color: #444;
+    height: 100%;
 }
 
 .search-container button {
     appearance: none;
     outline: none;
     background-color: transparent;
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: 25px;
     border-radius: 50%;
 }
 
@@ -54,16 +68,82 @@ header .action {
 }
 
 .weather-container {
-    background-color: white;
     display: flex;
     flex-direction: column;
+    background-color: #fff;
+    padding: 10px;
+    border-radius: 10px;
 }
 
 .weather-container .heading {
-    background-color: green;
     display: flex;
     justify-content: space-between;
 }
+
+.weather-info {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.weather-info .basic-info {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 20px;
+}
+
+.basic-info .location,
+.basic-info .description,
+.weather-container .heading p {
+    font-size: 18px;
+    margin: 0;
+    font-weight: 800;
+}
+
+.basic-info .location,
+.basic-info .description {
+    color: var(--blue);
+}
+
+.basic-info img.weather-icon {
+    height: 130px;
+}
+
+.basic-info .temperature {
+    font-size: 92px;
+    margin: 0;
+    color: var(--blue);
+}
+
+.weather-info .basic-info div {
+    display: flex;
+    align-items: center;
+}
+
+.extra-info .temp-info,
+.extra-info .temp-info div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.extra-info .temp-box {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.extra-info .temp-box img {
+    height: 28px;
+}
+
+.extra-info .temp-box p,
+.extra-info .feels-like {
+    font-size: 18px;
+    color: var(--blue);
+}
+
 
 
 

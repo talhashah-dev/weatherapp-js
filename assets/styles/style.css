@@ -1,167 +1,168 @@
 :root {
-    --blue : #2F5D8A;
-    --light-blue: #7B98B3;
-} 
+  --blue: #2f5d8a;
+  --light-blue: #7b98b3;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #e0f7fa;
-    margin: 0;
-    height: 100vh;
-    padding: 10px;
+  font-family: "Roboto", sans-serif;
+  background-image: linear-gradient(to bottom, #e0eaee, #add8e6);
+  margin: 0;
+  height: 100vh;
+  padding: 10px;
 }
 
 .container {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 1440px;
 }
 
 header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 0;
 }
 
 header h1 {
-    margin: 0;
-    color: var(--blue);
+  margin: 0;
+  color: var(--blue);
+  font-family: "Roboto", sans-serif;
+  font-weight: 900;
 }
 
 header .action {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 header .action i {
-    font-size: 26px;
+  font-size: 26px;
 }
 header .action i:hover {
-    opacity: 0.6;
+  opacity: 0.6;
 }
 
 .search-container {
-    padding: 10px 15px;
-    display: flex;
-    align-items: center;
-    border-radius: 25px;
-    background-color: white;
-    height: 25px;
+  padding: 10px 15px;
+  display: flex;
+  align-items: center;
+  border-radius: 25px;
+  background-color: white;
+  height: 25px;
 }
 
 .search-container input {
-    outline: none;
-    border: none;
-    font-size: 16px;
-    padding: 0 10px;
-    color: #444;
-    height: 100%;
-    font-size: 18px;
+  outline: none;
+  border: none;
+  font-size: 16px;
+  padding: 0 10px;
+  color: #444;
+  height: 100%;
+  font-size: 18px;
 }
 
 .search-container button {
-    appearance: none;
-    outline: none;
-    background-color: transparent;
-    border: none;
-    width: 25px;
-    height: 25px;
-    border-radius: 50%;
+  appearance: none;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
 }
 
 .search-container i {
-    color: var(--blue);
-    font-size: 22px;
+  color: var(--blue);
+  font-size: 22px;
 }
 
 .search-container i:active {
-    transform: scale(0.95);
+  transform: scale(0.95);
 }
 
 .search-container #searchInp {
-    width: 100%;
+  width: 100%;
 }
 
 .weather-container {
-    display: flex;
-    flex-direction: column;
-    background-color: #fff;
-    padding: 10px;
-    border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 25px;
+  border-radius: 10px;
 }
 
 .weather-container .heading {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .weather-info {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .weather-info .basic-info {
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  gap: 20px;
 }
 
 .basic-info .location,
 .basic-info .description,
 .weather-container .heading p {
-    font-size: 18px;
-    margin: 0;
-    font-weight: 800;
+  font-size: 18px;
+  margin: 0;
+  font-weight: 800;
 }
 
 .basic-info .location,
 .basic-info .description {
-    color: var(--blue);
+  color: var(--blue);
 }
 
 .basic-info img.weather-icon {
-    height: 130px;
+  height: 130px;
 }
 
 .basic-info .temperature {
-    font-size: 92px;
-    margin: 0;
-    color: var(--blue);
+  font-size: 92px;
+  margin: 0;
+  color: var(--blue);
 }
 
 .weather-info .basic-info div {
-    display: flex;
-    align-items: center;
+  display: flex;
+  align-items: center;
 }
 
 .extra-info .temp-info,
 .extra-info .temp-info div {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .extra-info .temp-box {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .extra-info .temp-box img {
-    height: 28px;
+  height: 28px;
 }
 
 .extra-info .temp-box p,
 .extra-info .feels-like {
-    font-size: 18px;
-    color: var(--blue);
+  font-size: 18px;
+  color: var(--blue);
 }
-
-
-
-

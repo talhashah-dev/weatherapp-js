@@ -70,6 +70,7 @@ header .action i {
   color: #444;
   height: 100%;
   font-size: 18px;
+  text-transform: capitalize;
 }
 
 .search-container button {
@@ -128,6 +129,7 @@ header .action i {
   font-size: 18px;
   margin: 0;
   font-weight: 800;
+  text-transform: capitalize;
 }
 
 .basic-info .location,

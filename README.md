@@ -4,7 +4,7 @@ This is a simple Weather App project built using HTML, CSS, and JavaScript. It a
 
 ## Preview
 
-[![Weather App Preview](./assets/images/preview.png)]
+[Weather App Preview](./assets/images/preview.png)
 
 ## Features
 

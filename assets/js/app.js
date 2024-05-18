@@ -2,6 +2,15 @@ const searchInp = document.getElementById("searchInp");
 const searchBtn = document.getElementById("searchBtn");
 const locateMe = document.getElementById("locateMe");
 const darkModeToggleBtn = document.getElementById("darkModeToggleBtn");
+const searchLocation = document.querySelector(".location");
+const temperature = document.querySelector(".temperature");
+const description = document.querySelector(".description");
+const feels_like = document.querySelector(".feels-like");
+const temp_min = document.querySelector(".temp-min");
+const temp_max = document.querySelector(".temp-max");
+const humidity = document.querySelector(".humidity");
+const wind_speed = document.querySelector(".wind-speed");
+const pressure = document.querySelector(".pressure");
 
 const API_KEY = "210eeabe1cac851c368047662c4815fd";
 
@@ -26,17 +35,7 @@ async function getSearchWeather() {
       );
       data = await result.json();
 
-      const location = document.querySelector(".location");
-      const temperature = document.querySelector(".temperature");
-      const description = document.querySelector(".description");
-      const feels_like = document.querySelector(".feels-like");
-      const temp_min = document.querySelector(".temp-min");
-      const temp_max = document.querySelector(".temp-max");
-      const humidity = document.querySelector(".humidity");
-      const wind_speed = document.querySelector(".wind-speed");
-      const pressure = document.querySelector(".pressure");
-
-      location.innerText = `${data.name}, ${data.sys.country}`;
+      searchLocation.innerText = `${data.name}, ${data.sys.country}`;
       temperature.innerText = `${Math.floor(data.main.temp)}°C`;
       description.innerText = `${data.weather[0].description}`;
       feels_like.innerText = `Feels Like ${Math.floor(data.main.feels_like)}°C`;
@@ -46,7 +45,6 @@ async function getSearchWeather() {
       wind_speed.innerText = `Wind ${Math.floor(data.wind.speed)}km/h`;
       pressure.innerText = `Pressure ${data.main.pressure}hpa`;
 
-      console.log(data);
     } catch (error) {
       switch (data.cod) {
         case "404":
@@ -84,9 +82,21 @@ async function getLocationWeather() {
     const longitude = location.coords.longitude;
     try {
       const result = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lon=${longitude}&lat=${latitude}&appid=${API_KEY}`
+        `https://api.openweathermap.org/data/2.5/weather?lon=${longitude}&lat=${latitude}&units=metric&appid=${API_KEY}`
       );
       const data = await result.json();
+
+      searchLocation.innerText = `${data.name}, ${data.sys.country}`;
+      temperature.innerText = `${Math.floor(data.main.temp)}°C`;
+      description.innerText = `${data.weather[0].description}`;
+      feels_like.innerText = `Feels Like ${Math.floor(data.main.feels_like)}°C`;
+      temp_max.innerText = `${Math.floor(data.main.temp_max)}°C`;
+      temp_min.innerText = `${Math.floor(data.main.temp_min)}°C`;
+      humidity.innerText = `Humidity ${data.main.humidity}%`;
+      wind_speed.innerText = `Wind ${Math.floor(data.wind.speed)}km/h`;
+      pressure.innerText = `Pressure ${data.main.pressure}hpa`;
+
+
     } catch (error) {
       Swal.fire({
         title: "Oops!",

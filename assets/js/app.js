@@ -11,6 +11,7 @@ const temp_max = document.querySelector(".temp-max");
 const humidity = document.querySelector(".humidity");
 const wind_speed = document.querySelector(".wind-speed");
 const pressure = document.querySelector(".pressure");
+const weather_icon = document.querySelector(".weather-icon");
 
 const API_KEY = "210eeabe1cac851c368047662c4815fd";
 
@@ -34,6 +35,85 @@ async function getSearchWeather() {
         `https://api.openweathermap.org/data/2.5/weather?q=${searchInp.value}&units=metric&appid=${API_KEY}`
       );
       data = await result.json();
+      console.log(data);
+
+      switch (data.weather[0].icon) {
+        case "01n":
+          weather_icon.src = "assets/images/clear-night.png";
+          break;
+
+        case "01d":
+          weather_icon.src = "assets/images/clear-day.png";
+          break;
+
+        case "02d":
+          weather_icon.src = "assets/images/partly-cloudy-day.png";
+          break;
+
+        case "02n":
+          weather_icon.src = "assets/images/partly-cloudy-night.png";
+          break;
+
+        case "03d":
+          weather_icon.src = "assets/images/cloudy.png";
+          break;
+
+        case "03n":
+          weather_icon.src = "assets/images/cloudy.png";
+          break;
+
+        case "04d":
+          weather_icon.src = "assets/images/cloudy.png";
+          break;
+
+        case "04n":
+          weather_icon.src = "assets/images/cloudy.png";
+          break;
+
+        case "09d":
+          weather_icon.src = "assets/images/heavy-showers.png";
+          break;
+
+        case "09n":
+          weather_icon.src = "assets/images/heavy-showers.png";
+          break;
+
+        case "10d":
+          weather_icon.src = "assets/images/showers.png";
+          break;
+
+        case "10n":
+          weather_icon.src = "assets/images/showers.png";
+          break;
+
+        case "11d":
+          weather_icon.src = "assets/images/thunderstorm-showers.png";
+          break;
+
+        case "11n":
+          weather_icon.src = "assets/images/thunderstorm-showers.png";
+          break;
+
+        case "13d":
+          weather_icon.src = "assets/images/snow.png";
+          break;
+
+        case "13n":
+          weather_icon.src = "assets/images/snow.png";
+          break;
+
+        case "50d":
+          weather_icon.src = "assets/images/fog.png";
+          break;
+
+        case "50n":
+          weather_icon.src = "assets/images/fog.png";
+          break;
+
+        default:
+          weather_icon.src = "assets/images/clear-day.png";
+          break;
+      }
 
       searchLocation.innerText = `${data.name}, ${data.sys.country}`;
       temperature.innerText = `${Math.floor(data.main.temp)}°C`;
@@ -44,7 +124,6 @@ async function getSearchWeather() {
       humidity.innerText = `Humidity ${data.main.humidity}%`;
       wind_speed.innerText = `Wind ${Math.floor(data.wind.speed)}km/h`;
       pressure.innerText = `Pressure ${data.main.pressure}hpa`;
-
     } catch (error) {
       switch (data.cod) {
         case "404":
@@ -96,7 +175,83 @@ async function getLocationWeather() {
       wind_speed.innerText = `Wind ${Math.floor(data.wind.speed)}km/h`;
       pressure.innerText = `Pressure ${data.main.pressure}hpa`;
 
+      switch (data.weather[0].icon) {
+        case "01n":
+          weather_icon.src = "assets/images/clear-night.png";
+          break;
 
+        case "01d":
+          weather_icon.src = "assets/images/clear-day.png";
+          break;
+
+        case "02d":
+          weather_icon.src = "assets/images/partly-cloudy-day.png";
+          break;
+
+        case "02n":
+          weather_icon.src = "assets/images/partly-cloudy-night.png";
+          break;
+
+        case "03d":
+          weather_icon.src = "assets/images/cloudy.png";
+          break;
+
+        case "03n":
+          weather_icon.src = "assets/images/cloudy.png";
+          break;
+
+        case "04d":
+          weather_icon.src = "assets/images/cloudy.png";
+          break;
+
+        case "04n":
+          weather_icon.src = "assets/images/cloudy.png";
+          break;
+
+        case "09d":
+          weather_icon.src = "assets/images/heavy-showers.png";
+          break;
+
+        case "09n":
+          weather_icon.src = "assets/images/heavy-showers.png";
+          break;
+
+        case "10d":
+          weather_icon.src = "assets/images/showers.png";
+          break;
+
+        case "10n":
+          weather_icon.src = "assets/images/showers.png";
+          break;
+
+        case "11d":
+          weather_icon.src = "assets/images/thunderstorm-showers.png";
+          break;
+
+        case "11n":
+          weather_icon.src = "assets/images/thunderstorm-showers.png";
+          break;
+
+        case "13d":
+          weather_icon.src = "assets/images/snow.png";
+          break;
+
+        case "13n":
+          weather_icon.src = "assets/images/snow.png";
+          break;
+
+        case "50d":
+          weather_icon.src = "assets/images/fog.png";
+          break;
+
+        case "50n":
+          weather_icon.src = "assets/images/fog.png";
+          break;
+
+        default:
+          weather_icon.src = "assets/images/clear-day.png";
+          break;
+      }
     } catch (error) {
       Swal.fire({
         title: "Oops!",

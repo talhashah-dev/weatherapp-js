@@ -2,6 +2,10 @@
 
 This is a simple Weather App project built using HTML, CSS, and JavaScript. It allows users to check the current weather of a city and provides additional weather details like temperature, humidity, wind speed, and pressure.
 
+## Preview
+
+[Weather App Preview](./assets/images/preview.png)
+
 ## Features
 
 - Displays current weather information for a city.

@@ -17,12 +17,14 @@ darkModeToggleBtn.addEventListener("click", () => {
 });
 
 async function getSearchWeather() {
+  let data;
+
   if (searchInp.value !== "") {
     try {
       const result = await fetch(
         `https://api.openweathermap.org/data/2.5/weather?q=${searchInp.value}&units=metric&appid=${API_KEY}`
       );
-      const data = await result.json();
+      data = await result.json();
 
       const location = document.querySelector(".location");
       const temperature = document.querySelector(".temperature");
@@ -46,10 +48,33 @@ async function getSearchWeather() {
 
       console.log(data);
     } catch (error) {
-      console.log(error);
+      switch (data.cod) {
+        case "404":
+          Swal.fire({
+            title: "Oops!",
+            text: "City Not Found!",
+            icon: "error",
+            confirmButtonText: "Ok",
+          });
+          break;
+
+        default:
+          Swal.fire({
+            title: "Oops!",
+            text: `${error}`,
+            icon: "error",
+            confirmButtonText: "Ok",
+          });
+          break;
+      }
     }
   } else {
-    console.log("Please enter a city name!");
+    Swal.fire({
+      title: "Oops!",
+      text: "Enter a City Name!",
+      icon: "error",
+      confirmButtonText: "Ok",
+    });
   }
 }
 
@@ -62,14 +87,23 @@ async function getLocationWeather() {
         `https://api.openweathermap.org/data/2.5/weather?lon=${longitude}&lat=${latitude}&appid=${API_KEY}`
       );
       const data = await result.json();
-      console.log(data);
     } catch (error) {
-      console.log(error);
+      Swal.fire({
+        title: "Oops!",
+        text: `${error}`,
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
     }
   }
 
   function rejected() {
-    console.log("Access Denied!");
+    Swal.fire({
+      title: "Oops!",
+      text: "Access Denied!",
+      icon: "error",
+      confirmButtonText: "Ok",
+    });
   }
 
   navigator.geolocation.getCurrentPosition(resolved, rejected);

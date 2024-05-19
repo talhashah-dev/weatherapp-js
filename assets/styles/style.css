@@ -9,7 +9,7 @@
 
 body {
   font-family: "Roboto", sans-serif;
-  background-image: linear-gradient(to bottom, #e0eaee, #add8e6);
+  background-image: linear-gradient(to bottom, #e0eaee, #d7f0f8);
   margin: 0;
   height: 100vh;
   padding: 10px;
@@ -58,19 +58,26 @@ header .action i {
   display: flex;
   align-items: center;
   border-radius: 25px;
-  background-color: white;
+  background-color: #F2E7FE;
   height: 25px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border: 1px solid transparent;
+}
+
+.search-container:focus-within {
+  border: 1px solid var(--blue);
 }
 
 .search-container input {
   outline: none;
-  border: none;
+  border: none; 
   font-size: 16px;
   padding: 0 10px;
   color: #444;
   height: 100%;
   font-size: 18px;
   text-transform: capitalize;
+  background-color: #F2E7FE;
 }
 
 .search-container button {
@@ -86,6 +93,7 @@ header .action i {
 .search-container i {
   color: var(--blue);
   font-size: 22px;
+  cursor: pointer;
 }
 
 .search-container i:active {
@@ -99,9 +107,10 @@ header .action i {
 .weather-container {
   display: flex;
   flex-direction: column;
-  background-color: #fff;
+  background-color: #F2E7FE;
   padding: 25px;
   border-radius: 10px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .weather-container .heading {

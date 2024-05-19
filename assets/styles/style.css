@@ -190,6 +190,6 @@ header .action i {
 }
 
 .bg-blue-container {
-  background-color: #021d3f;
+  background-color: #021d3f !important;
   color: #fff !important;
 }

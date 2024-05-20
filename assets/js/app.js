@@ -23,7 +23,6 @@ darkModeToggleBtn.addEventListener("click", () => {
   body.classList.toggle("bg-body-dark");
   searchContainer.classList.toggle("bg-blue-container");
   weatherContainer.classList.toggle("bg-blue-container");
-  searchInp.classList.toggle("bg-blue-container");
 });
 
 async function getSearchWeather() {

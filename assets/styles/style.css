@@ -187,16 +187,40 @@ i:active {
 }
 
 @media screen and (max-width: 500px) {
+
+  body {
+    height: auto;
+  }
+
+  .container {
+    height: auto;
+  }
+
   .weather-info {
     margin-top: 10px;
     flex-direction: column;
     gap: 10px;
   }
 
+  .weather-container .heading p {
+    display: none;
+  }
+
+  .weather-info .basic-info div {
+    flex-direction: column-reverse;
+  }
+
   .weather-container .extra-info {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+    align-items: center;
+    gap: 0;
+  }
+
+  .weather-info .basic-info {
+    align-items: center;
+    gap: 5px;
   }
 
   .temperature {

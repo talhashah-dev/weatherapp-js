@@ -110,7 +110,7 @@ async function getSearchWeather() {
           break;
 
         default:
-          weather_icon.src = "assets/images/clear-day.png";
+          weather_icon.src = "assets/images/undefined-icon.png";
           break;
       }
 
@@ -248,7 +248,7 @@ async function getLocationWeather() {
           break;
 
         default:
-          weather_icon.src = "assets/images/clear-day.png";
+          weather_icon.src = "assets/images/undefined-icon.png";
           break;
       }
     } catch (error) {
@@ -364,7 +364,7 @@ async function defaultSearch() {
         break;
 
       default:
-        weather_icon.src = "assets/images/clear-day.png";
+        weather_icon.src = "assets/images/undefined-icon.png";
         break;
     }
   } catch (error) {

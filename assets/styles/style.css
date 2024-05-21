@@ -11,21 +11,24 @@
   color: #fff;
 }
 
+html, body {
+  height: 100vh;
+}
+
 body {
   font-family: "Roboto", sans-serif;
   background-image: linear-gradient(to bottom, #63b7d3, #1c3277);
   margin: 0;
-  height: 100vh;
 }
 
 .container {
-  height: 95%;
   display: flex;
   flex-direction: column;
   gap: 10px;
   max-width: 1044px;
   padding: 10px;
   margin: 0 auto;
+  height: 95vh;
 }
 
 header {
@@ -194,7 +197,7 @@ i:active {
 
 @media screen and (max-width: 500px) {
 
-  body {
+  html, body {
     height: auto;
   }
 

@@ -25,125 +25,62 @@ darkModeToggleBtn.addEventListener("click", () => {
   weatherContainer.classList.toggle("bg-blue-container");
 });
 
+function setWeatherIcon(iconCode) {
+  const iconMap = {
+    "01n": "clear-night.png",
+    "01d": "clear-day.png",
+    "02d": "partly-cloudy-day.png",
+    "02n": "partly-cloudy-night.png",
+    "03d": "cloudy.png",
+    "03n": "cloudy.png",
+    "04d": "cloudy.png",
+    "04n": "cloudy.png",
+    "09d": "heavy-showers.png",
+    "09n": "heavy-showers.png",
+    "10d": "showers.png",
+    "10n": "showers.png",
+    "11d": "thunderstorm-showers.png",
+    "11n": "thunderstorm-showers.png",
+    "13d": "snow.png",
+    "13n": "snow.png",
+    "50d": "fog.png",
+    "50n": "fog.png"
+  };
+  weather_icon.src = `assets/images/${iconMap[iconCode] || "undefined-icon.png"}`;
+}
+
+function updateWeatherDetails(data) {
+  searchLocation.innerText = `${data.name}, ${data.sys.country}`;
+  temperature.innerText = `${Math.floor(data.main.temp)}°C`;
+  description.innerText = `${data.weather[0].description}`;
+  feels_like.innerText = `Feels Like ${Math.floor(data.main.feels_like)}°C`;
+  temp_max.innerText = `${Math.floor(data.main.temp_max)}°C`;
+  temp_min.innerText = `${Math.floor(data.main.temp_min)}°C`;
+  humidity.innerText = `Humidity ${data.main.humidity}%`;
+  wind_speed.innerText = `Wind ${Math.floor(data.wind.speed)}km/h`;
+  pressure.innerText = `Pressure ${data.main.pressure}hpa`;
+  setWeatherIcon(data.weather[0].icon);
+}
+
+async function fetchWeather(url) {
+  try {
+    const result = await fetch(url);
+    const data = await result.json();
+    updateWeatherDetails(data);
+  } catch (error) {
+    Swal.fire({
+      title: "Oops!",
+      text: `City Not Found!`,
+      icon: "error",
+      confirmButtonText: "Ok",
+    });
+  }
+}
+
 async function getSearchWeather() {
-  let data;
-
   if (searchInp.value !== "") {
-    try {
-      const result = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${searchInp.value}&units=metric&appid=${API_KEY}`
-      );
-      data = await result.json();
-      console.log(data);
-
-      switch (data.weather[0].icon) {
-        case "01n":
-          weather_icon.src = "assets/images/clear-night.png";
-          break;
-
-        case "01d":
-          weather_icon.src = "assets/images/clear-day.png";
-          break;
-
-        case "02d":
-          weather_icon.src = "assets/images/partly-cloudy-day.png";
-          break;
-
-        case "02n":
-          weather_icon.src = "assets/images/partly-cloudy-night.png";
-          break;
-
-        case "03d":
-          weather_icon.src = "assets/images/cloudy.png";
-          break;
-
-        case "03n":
-          weather_icon.src = "assets/images/cloudy.png";
-          break;
-
-        case "04d":
-          weather_icon.src = "assets/images/cloudy.png";
-          break;
-
-        case "04n":
-          weather_icon.src = "assets/images/cloudy.png";
-          break;
-
-        case "09d":
-          weather_icon.src = "assets/images/heavy-showers.png";
-          break;
-
-        case "09n":
-          weather_icon.src = "assets/images/heavy-showers.png";
-          break;
-
-        case "10d":
-          weather_icon.src = "assets/images/showers.png";
-          break;
-
-        case "10n":
-          weather_icon.src = "assets/images/showers.png";
-          break;
-
-        case "11d":
-          weather_icon.src = "assets/images/thunderstorm-showers.png";
-          break;
-
-        case "11n":
-          weather_icon.src = "assets/images/thunderstorm-showers.png";
-          break;
-
-        case "13d":
-          weather_icon.src = "assets/images/snow.png";
-          break;
-
-        case "13n":
-          weather_icon.src = "assets/images/snow.png";
-          break;
-
-        case "50d":
-          weather_icon.src = "assets/images/fog.png";
-          break;
-
-        case "50n":
-          weather_icon.src = "assets/images/fog.png";
-          break;
-
-        default:
-          weather_icon.src = "assets/images/undefined-icon.png";
-          break;
-      }
-
-      searchLocation.innerText = `${data.name}, ${data.sys.country}`;
-      temperature.innerText = `${Math.floor(data.main.temp)}°C`;
-      description.innerText = `${data.weather[0].description}`;
-      feels_like.innerText = `Feels Like ${Math.floor(data.main.feels_like)}°C`;
-      temp_max.innerText = `${Math.floor(data.main.temp_max)}°C`;
-      temp_min.innerText = `${Math.floor(data.main.temp_min)}°C`;
-      humidity.innerText = `Humidity ${data.main.humidity}%`;
-      wind_speed.innerText = `Wind ${Math.floor(data.wind.speed)}km/h`;
-      pressure.innerText = `Pressure ${data.main.pressure}hpa`;
-    } catch (error) {
-      switch (data.cod) {
-        case "404":
-          Swal.fire({
-            title: "Oops!",
-            text: "City Not Found!",
-            icon: "error",
-            confirmButtonText: "Ok",
-          });
-          break;
-
-        default:
-          Swal.fire({
-            title: "Oops!",
-            text: `${error}`,
-            icon: "error",
-            confirmButtonText: "Ok",
-          });
-          break;
-      }
-    }
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${searchInp.value}&units=metric&appid=${API_KEY}`;
+    await fetchWeather(url);
   } else {
     Swal.fire({
       title: "Oops!",
@@ -155,110 +92,11 @@ async function getSearchWeather() {
 }
 
 async function getLocationWeather() {
-  async function resolved(location) {
+  function resolved(location) {
     const latitude = location.coords.latitude;
     const longitude = location.coords.longitude;
-    try {
-      const result = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?lon=${longitude}&lat=${latitude}&units=metric&appid=${API_KEY}`
-      );
-      const data = await result.json();
-
-      searchLocation.innerText = `${data.name}, ${data.sys.country}`;
-      temperature.innerText = `${Math.floor(data.main.temp)}°C`;
-      description.innerText = `${data.weather[0].description}`;
-      feels_like.innerText = `Feels Like ${Math.floor(data.main.feels_like)}°C`;
-      temp_max.innerText = `${Math.floor(data.main.temp_max)}°C`;
-      temp_min.innerText = `${Math.floor(data.main.temp_min)}°C`;
-      humidity.innerText = `Humidity ${data.main.humidity}%`;
-      wind_speed.innerText = `Wind ${Math.floor(data.wind.speed)}km/h`;
-      pressure.innerText = `Pressure ${data.main.pressure}hpa`;
-
-      switch (data.weather[0].icon) {
-        case "01n":
-          weather_icon.src = "assets/images/clear-night.png";
-          break;
-
-        case "01d":
-          weather_icon.src = "assets/images/clear-day.png";
-          break;
-
-        case "02d":
-          weather_icon.src = "assets/images/partly-cloudy-day.png";
-          break;
-
-        case "02n":
-          weather_icon.src = "assets/images/partly-cloudy-night.png";
-          break;
-
-        case "03d":
-          weather_icon.src = "assets/images/cloudy.png";
-          break;
-
-        case "03n":
-          weather_icon.src = "assets/images/cloudy.png";
-          break;
-
-        case "04d":
-          weather_icon.src = "assets/images/cloudy.png";
-          break;
-
-        case "04n":
-          weather_icon.src = "assets/images/cloudy.png";
-          break;
-
-        case "09d":
-          weather_icon.src = "assets/images/heavy-showers.png";
-          break;
-
-        case "09n":
-          weather_icon.src = "assets/images/heavy-showers.png";
-          break;
-
-        case "10d":
-          weather_icon.src = "assets/images/showers.png";
-          break;
-
-        case "10n":
-          weather_icon.src = "assets/images/showers.png";
-          break;
-
-        case "11d":
-          weather_icon.src = "assets/images/thunderstorm-showers.png";
-          break;
-
-        case "11n":
-          weather_icon.src = "assets/images/thunderstorm-showers.png";
-          break;
-
-        case "13d":
-          weather_icon.src = "assets/images/snow.png";
-          break;
-
-        case "13n":
-          weather_icon.src = "assets/images/snow.png";
-          break;
-
-        case "50d":
-          weather_icon.src = "assets/images/fog.png";
-          break;
-
-        case "50n":
-          weather_icon.src = "assets/images/fog.png";
-          break;
-
-        default:
-          weather_icon.src = "assets/images/undefined-icon.png";
-          break;
-      }
-    } catch (error) {
-      Swal.fire({
-        title: "Oops!",
-        text: `${error}`,
-        icon: "error",
-        confirmButtonText: "Ok",
-      });
-    }
+    const url = `https://api.openweathermap.org/data/2.5/weather?lon=${longitude}&lat=${latitude}&units=metric&appid=${API_KEY}`;
+    fetchWeather(url);
   }
 
   function rejected() {
@@ -274,109 +112,10 @@ async function getLocationWeather() {
 }
 
 async function defaultSearch() {
-  try {
-    const result = await fetch(
-      `https://api.openweathermap.org/data/2.5/weather?q=london&units=metric&appid=${API_KEY}`
-    );
-    const data = await result.json();
-
-    searchLocation.innerText = `${data.name}, ${data.sys.country}`;
-    temperature.innerText = `${Math.floor(data.main.temp)}°C`;
-    description.innerText = `${data.weather[0].description}`;
-    feels_like.innerText = `Feels Like ${Math.floor(data.main.feels_like)}°C`;
-    temp_max.innerText = `${Math.floor(data.main.temp_max)}°C`;
-    temp_min.innerText = `${Math.floor(data.main.temp_min)}°C`;
-    humidity.innerText = `Humidity ${data.main.humidity}%`;
-    wind_speed.innerText = `Wind ${Math.floor(data.wind.speed)}km/h`;
-    pressure.innerText = `Pressure ${data.main.pressure}hpa`;
-
-    switch (data.weather[0].icon) {
-      case "01n":
-        weather_icon.src = "assets/images/clear-night.png";
-        break;
-
-      case "01d":
-        weather_icon.src = "assets/images/clear-day.png";
-        break;
-
-      case "02d":
-        weather_icon.src = "assets/images/partly-cloudy-day.png";
-        break;
-
-      case "02n":
-        weather_icon.src = "assets/images/partly-cloudy-night.png";
-        break;
-
-      case "03d":
-        weather_icon.src = "assets/images/cloudy.png";
-        break;
-
-      case "03n":
-        weather_icon.src = "assets/images/cloudy.png";
-        break;
-
-      case "04d":
-        weather_icon.src = "assets/images/cloudy.png";
-        break;
-
-      case "04n":
-        weather_icon.src = "assets/images/cloudy.png";
-        break;
-
-      case "09d":
-        weather_icon.src = "assets/images/heavy-showers.png";
-        break;
-
-      case "09n":
-        weather_icon.src = "assets/images/heavy-showers.png";
-        break;
-
-      case "10d":
-        weather_icon.src = "assets/images/showers.png";
-        break;
-
-      case "10n":
-        weather_icon.src = "assets/images/showers.png";
-        break;
-
-      case "11d":
-        weather_icon.src = "assets/images/thunderstorm-showers.png";
-        break;
-
-      case "11n":
-        weather_icon.src = "assets/images/thunderstorm-showers.png";
-        break;
-
-      case "13d":
-        weather_icon.src = "assets/images/snow.png";
-        break;
-
-      case "13n":
-        weather_icon.src = "assets/images/snow.png";
-        break;
-
-      case "50d":
-        weather_icon.src = "assets/images/fog.png";
-        break;
-
-      case "50n":
-        weather_icon.src = "assets/images/fog.png";
-        break;
-
-      default:
-        weather_icon.src = "assets/images/undefined-icon.png";
-        break;
-    }
-  } catch (error) {
-    Swal.fire({
-      title: "Oops!",
-      text: "Check Your Connection!",
-      icon: "error",
-      confirmButtonText: "Ok",
-    });
-  }
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=london&units=metric&appid=${API_KEY}`;
+  await fetchWeather(url);
 }
 
-window.addEventListener("load", defaultSearch)
+window.addEventListener("load", defaultSearch);
 locateMe.addEventListener("click", getLocationWeather);
 searchBtn.addEventListener("click", getSearchWeather);

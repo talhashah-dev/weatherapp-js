@@ -183,6 +183,35 @@ i:active {
   font-size: 18px;
 }
 
+.forecast {
+  display: flex;
+  gap: 20px;
+}
+
+.forecast .card-container {
+  margin: 0 auto;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.card-container .card {
+  text-align: center;
+  border: 1px solid ;
+  border-radius: 10px;
+  width: 180px;
+  height: 340px;
+  padding: 5px;
+}
+
+.card-container .card .date {
+  font-weight: 800;
+}
+
+.card-container .card .card-img {
+  width: 180px;
+}
+
 .bg-body-dark {
   background-image: linear-gradient(to bottom, #011433, #16315e);
 }
@@ -194,6 +223,8 @@ i:active {
   -webkit-backdrop-filter: blur(4.6px);
   border: 1px solid rgba(255, 255, 255, 0.42);
 }
+
+
 
 @media screen and (max-width: 500px) {
 

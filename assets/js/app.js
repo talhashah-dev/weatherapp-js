@@ -68,12 +68,21 @@ async function fetchWeather(url) {
     const data = await result.json();
     updateWeatherDetails(data);
   } catch (error) {
-    Swal.fire({
-      title: "Oops!",
-      text: `City Not Found!`,
-      icon: "error",
-      confirmButtonText: "Ok",
-    });
+    if(error.message === "Failed to fetch"){
+      Swal.fire({
+        title: "Oops!",
+        text: `Check your Connection!`,
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+    } else {
+      Swal.fire({
+        title: "Oops!",
+        text: `City Not Found!`,
+        icon: "error",
+        confirmButtonText: "Ok",
+      });
+    }
   }
 }
 
@@ -115,6 +124,22 @@ async function defaultSearch() {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=london&units=metric&appid=${API_KEY}`;
   await fetchWeather(url);
 }
+
+
+searchInp.addEventListener("keydown",(e) => {
+  if(e.code == "Enter"){
+    if(searchInp.value !== ""){
+      getSearchWeather()
+    } else {
+      Swal.fire({
+        title: "Oops!",
+        text: "Enter a City Name!",
+        icon: "error",
+        confirmButtonText: "Ok",
+      })
+    }
+  }
+})
 
 window.addEventListener("load", defaultSearch);
 locateMe.addEventListener("click", getLocationWeather);

@@ -44,9 +44,11 @@ function setWeatherIcon(iconCode) {
     "13d": "snow.png",
     "13n": "snow.png",
     "50d": "fog.png",
-    "50n": "fog.png"
+    "50n": "fog.png",
   };
-  weather_icon.src = `assets/images/${iconMap[iconCode] || "undefined-icon.png"}`;
+  weather_icon.src = `assets/images/${
+    iconMap[iconCode] || "undefined-icon.png"
+  }`;
 }
 
 function updateWeatherDetails(data) {
@@ -68,7 +70,7 @@ async function fetchWeather(url) {
     const data = await result.json();
     updateWeatherDetails(data);
   } catch (error) {
-    if(error.message === "Failed to fetch"){
+    if (error.message === "Failed to fetch") {
       Swal.fire({
         title: "Oops!",
         text: `Check your Connection!`,
@@ -86,10 +88,23 @@ async function fetchWeather(url) {
   }
 }
 
+async function getForecast(location) {
+  const response = await fetch(
+    `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=${API_KEY}`
+  );
+  const data = await response.json();
+  console.log(data)
+  // for (i = 0; i < data.list.length; i++) {
+  //   console.log(data.list.length)
+  //   // console.log(data.list[i])
+  // }
+}
+
 async function getSearchWeather() {
   if (searchInp.value !== "") {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${searchInp.value}&units=metric&appid=${API_KEY}`;
     await fetchWeather(url);
+    await getForecast(searchInp.value);
   } else {
     Swal.fire({
       title: "Oops!",
@@ -123,23 +138,24 @@ async function getLocationWeather() {
 async function defaultSearch() {
   const url = `https://api.openweathermap.org/data/2.5/weather?q=london&units=metric&appid=${API_KEY}`;
   await fetchWeather(url);
+  await getForecast("london");
 }
 
-
-searchInp.addEventListener("keydown",(e) => {
-  if(e.code == "Enter"){
-    if(searchInp.value !== ""){
-      getSearchWeather()
+searchInp.addEventListener("keydown", (e) => {
+  if (e.code == "Enter") {
+    if (searchInp.value !== "") {
+      getForecast(searchInp.value);
+      getSearchWeather();
     } else {
       Swal.fire({
         title: "Oops!",
         text: "Enter a City Name!",
         icon: "error",
         confirmButtonText: "Ok",
-      })
+      });
     }
   }
-})
+});
 
 window.addEventListener("load", defaultSearch);
 locateMe.addEventListener("click", getLocationWeather);

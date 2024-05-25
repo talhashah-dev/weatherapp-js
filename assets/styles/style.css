@@ -11,7 +11,8 @@
   color: #fff;
 }
 
-html, body {
+html,
+body {
   min-height: 100vh;
 }
 
@@ -197,11 +198,16 @@ i:active {
 
 .card-container .card {
   text-align: center;
-  border: 1px solid ;
   border-radius: 10px;
   width: 180px;
   height: 340px;
   padding: 5px;
+  border: 1px solid transparent;
+}
+
+.card-container .card:hover {
+  border: 1px solid;
+  transition: 0.5s;
 }
 
 .card-container .card .date {
@@ -224,11 +230,9 @@ i:active {
   border: 1px solid rgba(255, 255, 255, 0.42);
 }
 
-
-
 @media screen and (max-width: 500px) {
-
-  html, body {
+  html,
+  body {
     height: auto;
   }
 
@@ -266,6 +270,41 @@ i:active {
   .temperature {
     font-size: 10px;
   }
+
+  .forecast .card-container {
+    overflow-y: hidden;
+    gap: 10px;
+  }
+
+  .card-container .card {
+    border: 1px solid;
+    width: auto;
+    height: auto;
+  }
+
+  .card-container .card .max-min-temp {
+    display: none;
+  }
+
+  .card-container .card p {
+    font-size: 16px;
+    margin: 0.5px;
+  }
+
+  .card-container .card .card-img {
+    width: 100px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 1px !important;
+  }
+  
+  ::-webkit-scrollbar-track,
+  ::-webkit-scrollbar-thumb,
+  ::-webkit-scrollbar-thumb:hover {
+    background: transparent !important;
+  }
+
 }
 
 ::-webkit-scrollbar {

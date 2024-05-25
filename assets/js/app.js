@@ -12,6 +12,7 @@ const humidity = document.querySelector(".humidity");
 const wind_speed = document.querySelector(".wind-speed");
 const pressure = document.querySelector(".pressure");
 const weather_icon = document.querySelector(".weather-icon");
+const forecast = document.querySelector(".forecast");
 
 const API_KEY = "210eeabe1cac851c368047662c4815fd";
 
@@ -19,7 +20,6 @@ darkModeToggleBtn.addEventListener("click", () => {
   const body = document.body;
   const searchContainer = document.querySelector(".search-container");
   const weatherContainer = document.querySelector(".weather-container");
-  const forecast = document.querySelector(".forecast");
   darkModeToggleBtn.classList.toggle("fa-moon");
   body.classList.toggle("bg-body-dark");
   searchContainer.classList.toggle("bg-blue-container");

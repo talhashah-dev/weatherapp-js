@@ -19,10 +19,12 @@ darkModeToggleBtn.addEventListener("click", () => {
   const body = document.body;
   const searchContainer = document.querySelector(".search-container");
   const weatherContainer = document.querySelector(".weather-container");
+  const forecast = document.querySelector(".forecast");
   darkModeToggleBtn.classList.toggle("fa-moon");
   body.classList.toggle("bg-body-dark");
   searchContainer.classList.toggle("bg-blue-container");
   weatherContainer.classList.toggle("bg-blue-container");
+  forecast.classList.toggle("bg-blue-container");
 });
 
 function setWeatherIcon(iconCode) {
@@ -93,7 +95,7 @@ async function getForecast(location) {
     `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=${API_KEY}`
   );
   const data = await response.json();
-  console.log(data)
+  console.log(data);
   // for (i = 0; i < data.list.length; i++) {
   //   console.log(data.list.length)
   //   // console.log(data.list[i])

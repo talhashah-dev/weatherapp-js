@@ -91,15 +91,81 @@ async function fetchWeather(url) {
 }
 
 async function getForecast(location) {
-  const response = await fetch(
-    `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=${API_KEY}`
-  );
-  const data = await response.json();
-  console.log(data);
-  // for (i = 0; i < data.list.length; i++) {
-  //   console.log(data.list.length)
-  //   // console.log(data.list[i])
-  // }
+  try {
+    const response = await fetch(
+      `https://api.openweathermap.org/data/2.5/forecast?q=${location}&units=metric&appid=${API_KEY}`
+    );
+    const forecastData = await response.json();
+    const cardContainer = document.querySelector(".card-container");
+
+    // Function to get one forecast entry per day
+    function getDailyForecasts(forecastList) {
+      const dailyForecasts = [];
+      const usedDates = new Set();
+
+      forecastList.forEach((forecast) => {
+        const date = new Date(forecast.dt * 1000).toLocaleDateString();
+        if (!usedDates.has(date)) {
+          dailyForecasts.push(forecast);
+          usedDates.add(date);
+        }
+      });
+
+      return dailyForecasts.slice(0, 5); // Get only the next 5 days
+    }
+
+    const dailyForecasts = getDailyForecasts(forecastData.list);
+
+    dailyForecasts.forEach((forecast) => {
+      // Create a card element
+      const card = document.createElement("div");
+      card.className = "card";
+
+      // Create elements for the forecast data
+      const date = document.createElement("p");
+      date.className = "date";
+      date.textContent = new Date(forecast.dt * 1000).toLocaleDateString(
+        "en-US",
+        { weekday: "long" }
+      );
+
+      const icon = document.createElement("img");
+      icon.className = "card-img";
+      icon.src = `assets/images/${forecast.weather[0].icon}.png`
+      icon.src = `http://openweathermap.org/img/wn/${forecast.weather[0].icon}.png`;
+      icon.alt = forecast.weather[0].description;
+
+      const temperature = document.createElement("p");
+      temperature.className = "temperature";
+      temperature.textContent = `${forecast.main.temp}°C`;
+
+      const maxMinTemp = document.createElement("p");
+      maxMinTemp.className = "max-min-temp";
+      maxMinTemp.textContent = `${forecast.main.temp_min}°C|${forecast.main.temp_max}°C`;
+
+      const description = document.createElement("p");
+      description.className = "description";
+      description.textContent = forecast.weather[0].description;
+
+      // Append the elements to the card
+      card.appendChild(date);
+      card.appendChild(icon);
+      card.appendChild(temperature);
+      card.appendChild(maxMinTemp);
+      card.appendChild(description);
+
+      // Append the card to the container
+      cardContainer.appendChild(card);
+    });
+  } catch (error) {
+    console.log(error);
+    // Swal.fire({
+    //   title: "Oops!",
+    //   text: `${error}`,
+    //   icon: "error",
+    //   confirmButtonText: "Ok",
+    // });
+  }
 }
 
 async function getSearchWeather() {

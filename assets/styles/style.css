@@ -194,6 +194,7 @@ i:active {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
+  overflow-y: hidden;
 }
 
 .card-container .card {
